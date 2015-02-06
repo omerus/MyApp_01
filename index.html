@@ -1,0 +1,123 @@
+<!doctype html>
+<!--[if lt IE 8 ]><html lang="en" class="ie7"> <![endif]-->
+<!--[if IE 8 ]><html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]><html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta name="author" content="Ömer Ustabaş">
+<meta name="keywords" content="Sipariş">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sipariş Al</title>
+
+<!-- main JS libs  -->
+<script src="js/libs/jquery-1.11.0.min.js"></script>
+<script src="js/libs/jquery-ui.min.js"></script>
+<script src="js/libs/bootstrap.min.js"></script>
+<script src="js/phonegap-1.4.1.js"></script>
+<script type="text/javascript" charset="utf-8">
+
+            // Wait for PhoneGap to load
+            //
+            document.addEventListener("deviceready", onDeviceReady, false);
+
+            // PhoneGap is ready
+            //
+            function onDeviceReady() {
+                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+            }
+
+            function gotFS(fileSystem) {
+                fileSystem.root.getFile("deneme.txt", {create: true}, gotFileEntry, fail);
+            }
+
+            function gotFileEntry(fileEntry) {
+                fileEntry.createWriter(gotFileWriter, fail);
+            }
+
+            function gotFileWriter(writer) {
+                writer.onwrite = function(evt) {
+                    console.log("write success");
+                };
+
+                writer.write("some sample text");
+                writer.abort();
+                // contents of file now 'some different text'
+            }
+
+            function fail(error) {
+                console.log("error : "+error.code);
+            }
+
+        </script>
+
+<!-- Style CSS -->
+<link href="css/bootstrap.css" media="screen" rel="stylesheet">
+<link href="style.css" media="screen" rel="stylesheet">
+
+<!-- General Scripts -->
+<script src="js/general.js"></script>
+
+<!--[if lt IE 9]>
+<script src="js/libs/html5shiv.js"></script>
+<script src="js/libs/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+<div class="body-wrap">
+    <!-- container-->
+    <div class="container" id="deneme">
+        <div class="row">
+        <div class="col-sm-6">
+                    <!-- Price List -->
+                    <div class="price-list style3">
+                        <div class="price-item boxed">
+                            <div class="price-content bg-image-note4">
+                                <h3 class="price-title">Bir</h3>
+                                <h6 class="price-subtitle">For music lovers</h6>
+                                <ul>
+                                    <li>50 000 songs</li>
+                                    <li>All profiles</li>
+                                    <li>Exclusive stories</li>
+                                    <li>Hot news</li>
+                                </ul>
+                            </div>
+                            <div class="price">
+                                <strong><sub>$</sub>9</strong>
+                                <span>per month</span>
+                            </div>
+                            <a href="#" class="btn btn-full btn-large"><span><i class="glyphicon glyphicon-shopping-cart"></i>Buy!</span></a>
+                        </div>
+                     </div>
+                    <!--/ Price List -->
+                </div>
+                <div class="col-sm-6">
+                    <!-- Price List -->
+                    <div class="price-list style3">
+                        <div class="price-item boxed">
+                            <div class="price-content bg-image-note4">
+                                <h3 class="price-title">İki</h3>
+                                <h6 class="price-subtitle">For music lovers</h6>
+                                <ul>
+                                    <li>50 000 songs</li>
+                                    <li>All profiles</li>
+                                    <li>Exclusive stories</li>
+                                    <li>Hot news</li>
+                                </ul>
+                            </div>
+                            <div class="price">
+                                <strong><sub>$</sub>9</strong>
+                                <span>per month</span>
+                            </div>
+                            <a href="#" class="btn btn-full btn-large"><span><i class="glyphicon glyphicon-shopping-cart"></i>Buy!</span></a>
+                        </div>
+                     </div>
+                    <!--/ Price List -->
+                </div>
+        </div>
+    </div>
+    <!--/ container-->
+</div>
+</body>
+</html>
